@@ -1,21 +1,25 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/xhtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/templates/template.xhtml">
-        <ui:define name="titulo">Manutenção de Autores</ui:define>
+        <ui:define name="titulo">Manutenção de Categorias</ui:define>
         <ui:define name="conteudo">
             <h:form id="formListagem" prependId="false">
                 <p:growl/>
-                <p:commandButton value="Novo autor"
-                                 actionListener="#{controleAutor.novo()}"
+                <p:commandButton value="Nova categoria"
+                                 actionListener="#{controleCategoria.novo()}"
                                  icon=" pi pi-plus"
                                  update="formEdicao"
                                  process="@this"
                                  oncomplete="PF('dlg').show();"/>
-                <p:dataTable value="#{controleAutor.dao.listaObjetos}" var="obj"
+                <p:dataTable value="#{controleCategoria.dao.listaObjetos}" var="obj"
                              id="listagem">
                     <p:column headerText="ID">
                         <p:outputLabel value="#{obj.id}"/>
@@ -25,13 +29,13 @@
                     </p:column> 
                     <p:column headerText="Ações">
                         <div align="center">
-                            <p:commandButton actionListener="#{controleAutor.alterar(obj.id)}"
+                            <p:commandButton actionListener="#{controleCategoria.alterar(obj.id)}"
                                             icon="pi pi-pencil"
                                             title="Editar"
                                             update="formEdicao"
                                             process="@this"
                                             oncomplete="PF('dlg').show();"/>
-                            <p:commandButton actionListener="#{controleAutor.remover(obj.id)}"
+                            <p:commandButton actionListener="#{controleCategoria.remover(obj.id)}"
                                              icon="pi pi-trash"
                                              update="@form"
                                              process="@this"
@@ -49,10 +53,10 @@
                     <div align="center">
                         <p:panelGrid columns="2">
                             <p:outputLabel value="ID"/>
-                            <p:inputText value="#{controleAutor.objeto.id}"
+                            <p:inputText value="#{controleCategoria.objeto.id}"
                                          size="5" readonly="true"/>
                             <p:outputLabel value="Nome" for="txtNome"/>
-                            <p:inputText id="txtNome" value="#{controleAutor.objeto.nome}"
+                            <p:inputText id="txtNome" value="#{controleCategoria.objeto.nome}"
                                          size="50" maxlength="50"
                                          placeholder="Obrigatório"/>
                         </p:panelGrid>
@@ -61,7 +65,7 @@
                         <div align="center">
                             <p:commandButton value="Salvar"
                                              icon="pi pi-save"
-                                             actionListener="#{controleAutor.salvar()}"
+                                             actionListener="#{controleCategoria.salvar()}"
                                              update="formEdicao formListagem"
                                              oncomplete="if(!args.validationFailed){PF('dlg').hide();}"/>
                         </div>
@@ -72,4 +76,3 @@
         </ui:define>
     </ui:composition>
 </html>
-
