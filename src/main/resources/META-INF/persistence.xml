@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="PW-Biblioteca-WebPU" transaction-type="JTA">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <jta-data-source>jdbc/pw-biblioteca</jta-data-source>
+    <class>br.edu.ifsul.modelo.Autor</class>
+    <class>br.edu.ifsul.modelo.Categoria</class>
+    <class>br.edu.ifsul.modelo.Cliente</class>
+    <class>br.edu.ifsul.modelo.Emprestimo</class>
+    <class>br.edu.ifsul.modelo.Livro</class>
+    <class>br.edu.ifsul.modelo.LivroEmprestimo</class>
+    <properties>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+      <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
+    </properties>
+  </persistence-unit>
+</persistence>
