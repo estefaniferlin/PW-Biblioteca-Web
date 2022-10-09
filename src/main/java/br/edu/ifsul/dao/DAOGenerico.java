@@ -37,6 +37,7 @@ public class DAOGenerico<TIPO> implements Serializable{
     
     // métodos para persistência dos dados
     public void persist(TIPO obj) throws Exception{
+        System.out.print(obj);
         em.persist(obj);
     }
     

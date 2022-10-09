@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/xhtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/templates/template.xhtml">
+        <ui:define name="titulo">Manutenção de Clientes</ui:define>
+        <ui:define name="conteudo">
+            <h:form id="formListagem" prependId="false">
+                <p:growl/>
+                <p:commandButton value="Novo cliente"
+                                 actionListener="#{controleCliente.novo()}"
+                                 icon=" pi pi-plus"
+                                 update="formEdicao"
+                                 process="@this"
+                                 oncomplete="PF('dlg').show();"/>
+                <p:dataTable value="#{controleCliente.dao.listaObjetos}" var="obj"
+                             id="listagem">
+                    <p:column headerText="ID">
+                        <p:outputLabel value="#{obj.id}"/>
+                    </p:column>
+                     <p:column headerText="Nome">
+                        <p:outputLabel value="#{obj.nome}"/>
+                    </p:column>
+                    <p:column headerText="CPF">
+                        <p:outputLabel value="#{obj.cpf}"/>
+                    </p:column>
+                    <p:column headerText="Telefone">
+                        <p:outputLabel value="#{obj.telefone}"/>
+                    </p:column>
+                    <p:column headerText="E-mail">
+                        <p:outputLabel value="#{obj.email}"/>
+                    </p:column>
+                    <p:column headerText="Data de Cadastro">
+                        <p:outputLabel value="#{obj.dtCadastro}">
+                            <f:converter converterId="converterCalendar"/>
+                        </p:outputLabel>
+                    </p:column>
+                    <p:column headerText="Ações">
+                        <div align="center">
+                            <p:commandButton actionListener="#{controleCliente.alterar(obj.id)}"
+                                            icon="pi pi-pencil"
+                                            title="Editar"
+                                            update="formEdicao"
+                                            process="@this"
+                                            oncomplete="PF('dlg').show();"/>
+                            <p:commandButton actionListener="#{controleCliente.remover(obj.id)}"
+                                             icon="pi pi-trash"
+                                             update="@form"
+                                             process="@this"
+                                             onclick="if(!confirm('Confirma a exclusão?')) return false"/>
+                                            
+                        </div>
+                    </p:column>                       
+                </p:dataTable>
+            </h:form>
+            
+            <p:dialog header="Edição" widgetVar='dlg' resizable="false"
+                modal="true" width="50%" height="100%">
+                <h:form id="formEdicao" prependId="false">
+                    <p:growl/>
+                    <div align="center">
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="ID"/>
+                            <p:inputText value="#{controleCliente.objeto.id}"
+                                         size="5" readonly="true"/>
+                            <p:outputLabel value="Nome" for="txtNome"/>
+                            <p:inputText id="txtNome" value="#{controleCliente.objeto.nome}"
+                                         size="50" maxlength="50"
+                                         placeholder="Obrigatório"/>
+                            <p:outputLabel value="CPF" for="txtCPF"/>
+                            <p:inputText value="#{controleCliente.objeto.cpf}"
+                                         id="txtCPF" size="15" maxlength="11"
+                                         placeholder="Número de CPF"/>
+                            <p:outputLabel value="E-mail" for="txtEmail"/>
+                            <p:inputText value="#{controleCliente.objeto.email}"
+                                         id="txtEmail" size="40" maxlength="40"
+                                         placeholder="E-mail para contato"/>
+                            <p:outputLabel value="Telefone +55" for="txtTelefone"/>
+                            <p:inputText value="#{controleCliente.objeto.telefone}"
+                                         id="txtTelefone" size="15" maxlength="11"
+                                         placeholder="Telefone fixo/móvel"/>
+                            <p:outputLabel value="Data de Cadastro" for="txtDtCadastro"/>
+                            <p:calendar value="#{controleCliente.objeto.dtCadastro}"
+                                         id="txtDtCadastro" mask="dd/MM/yyyy" readonly="true">
+                                <f:converter converterId="converterCalendar"/>
+                            </p:calendar>
+                        </p:panelGrid>
+                    </div>
+                    <p:panel>
+                        <div align="center">
+                            <p:commandButton value="Salvar"
+                                             icon="pi pi-save"
+                                             actionListener="#{controleCliente.salvar()}"
+                                             update="formEdicao formListagem"
+                                             oncomplete="if(!args.validationFailed){PF('dlg').hide();}"/>
+                        </div>
+                    </p:panel>
+                        
+                </h:form>          
+            </p:dialog>
+        </ui:define>
+    </ui:composition>
+</html>
