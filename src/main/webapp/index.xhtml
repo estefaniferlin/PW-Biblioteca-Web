@@ -6,11 +6,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/xhtml.xhtml to edit this te
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:composition template="/templates/template.xhtml">
-        <ui:define name="titulo">Sistema com JSF e Payara com Netbeans 12.2</ui:define>
+        <ui:define name="titulo">Biblioteca PW</ui:define>
         <ui:define name="conteudo">
-            <h1>Seja bem vindo ao sistema</h1>
+            <div style="background-color: #F0F8FF">
+                <div style="background-color: #87CEFA"  class="banner-area">
+                    <h1 align="center">Biblioteca PW</h1>   
+                </div>
+                <br></br>
+                <div align="center">
+                    <h3>Seja bem-vindo a Biblioteca PW!</h3> 
+                    <p>Esta biblioteca foi desenvolvida para a avaliação da primeira etapa
+                    da disciplina de Programação para Web.
+                    No menu você pode selecionar a opção de cadastros e realizar o cadastro de
+                    autores, categorias, livros e clientes. Além disso, pode realizar a manutenção
+                    de seus respectivos dados e filtrar.</p>
+                </div>
+                <div align="center" style="margin-top: 450px">Copyright 2022 by Estéfani Ferlin, Ciência da Computação, IFSul</div>
+            </div>
         </ui:define>
     </ui:composition>
 </html>
+
